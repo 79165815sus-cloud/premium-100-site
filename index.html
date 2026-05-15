@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Премиум 100 — личная команда 1-на-1 для подготовки к ЕГЭ</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#150932;
+    --bg-2:#1f1147;
+    --bg-light:#f5f3ff;
+    --text:#0e0a1f;
+    --text-muted:#7a7392;
+    --text-on-dark:#ffffff;
+    --text-on-dark-muted:#b6acd9;
+    --accent:#d8ff3a;
+    --accent-dark:#bce228;
+    --accent-2:#ff6ba6;
+    --accent-3:#7c5cff;
+    --card-dark:#241458;
+    --card-border:#3a2680;
+    --radius:24px;
+    --radius-sm:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    background:var(--bg);
+    color:var(--text-on-dark);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  .container{max-width:1240px;margin:0 auto;padding:0 24px}
+  a{color:inherit;text-decoration:none}
+
+  /* HEADER */
+  header{
+    position:sticky;top:0;z-index:100;
+    background:rgba(21,9,50,.92);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(255,255,255,.06);
+  }
+  .nav{display:flex;align-items:center;gap:28px;padding:16px 0;flex-wrap:wrap}
+  .logo{font-size:22px;font-weight:900;letter-spacing:-.02em}
+  .logo span{color:var(--accent)}
+  .nav-toggle{display:flex;background:rgba(255,255,255,.06);border-radius:999px;padding:4px}
+  .nav-toggle button{
+    background:transparent;border:none;color:var(--text-on-dark-muted);
+    padding:8px 16px;border-radius:999px;font-size:14px;cursor:pointer;font-weight:500;
+    font-family:inherit;
+  }
+  .nav-toggle button.active{background:#fff;color:var(--text)}
+  .nav-menu{display:flex;gap:24px;font-size:14px;color:var(--text-on-dark-muted);font-weight:500}
+  .nav-menu a:hover{color:var(--accent)}
+  .nav-right{margin-left:auto;display:flex;align-items:center;gap:14px}
+  .phone{font-size:14px;font-weight:600;color:var(--text-on-dark-muted)}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    padding:14px 24px;border-radius:999px;font-weight:600;font-size:15px;
+    border:none;cursor:pointer;transition:transform .15s,box-shadow .15s;
+    font-family:inherit;text-decoration:none;line-height:1;
+  }
+  .btn-primary{background:var(--accent);color:var(--text)}
+  .btn-primary:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(216,255,58,.35)}
+  .btn-ghost{background:rgba(255,255,255,.08);color:var(--text-on-dark)}
+  .btn-ghost:hover{background:rgba(255,255,255,.14)}
+  .btn-lg{padding:18px 32px;font-size:17px}
+  .btn-dark{background:var(--text);color:#fff}
+
+  /* HERO */
+  .hero{padding:60px 0 100px;position:relative;overflow:hidden}
+  .hero::before{
+    content:"";position:absolute;top:-10%;right:-10%;width:600px;height:600px;
+    background:radial-gradient(circle,rgba(216,255,58,.15) 0%,transparent 70%);
+    pointer-events:none;
+  }
+  .hero::after{
+    content:"";position:absolute;bottom:-20%;left:-10%;width:500px;height:500px;
+    background:radial-gradient(circle,rgba(255,107,166,.12) 0%,transparent 70%);
+    pointer-events:none;
+  }
+  .hero-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;position:relative;z-index:2;align-items:center}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(216,255,58,.12);color:var(--accent);
+    padding:8px 16px;border-radius:999px;font-size:13px;font-weight:600;
+    margin-bottom:24px;border:1px solid rgba(216,255,58,.25);
+  }
+  .eyebrow::before{content:"";width:6px;height:6px;background:var(--accent);border-radius:50%}
+  h1.hero-title{
+    font-size:clamp(40px,5vw,68px);font-weight:900;line-height:1.05;letter-spacing:-.025em;
+    margin-bottom:24px;
+  }
+  h1.hero-title .hl{
+    background:linear-gradient(120deg,var(--accent) 0%,var(--accent) 100%);
+    background-size:100% 30%;background-position:0 90%;background-repeat:no-repeat;
+    color:var(--text-on-dark);padding:0 6px;border-radius:6px;
+    display:inline-block;background-color:var(--accent);color:var(--text);
+  }
+  .hero-sub{
+    font-size:19px;color:var(--text-on-dark-muted);max-width:580px;margin-bottom:32px;
+    line-height:1.55;
+  }
+  .hero-badges{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:36px}
+  .badge{
+    background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+    padding:14px 18px;border-radius:18px;display:flex;flex-direction:column;gap:2px;
+  }
+  .badge-num{font-size:24px;font-weight:800;color:var(--accent);line-height:1}
+  .badge-txt{font-size:12px;color:var(--text-on-dark-muted);line-height:1.3}
+  .hero-form{
+    background:#fff;color:var(--text);
+    border-radius:var(--radius);padding:32px;
+  }
+  .hero-form h3{font-size:24px;font-weight:800;margin-bottom:8px;letter-spacing:-.015em}
+  .hero-form p{color:var(--text-muted);font-size:14px;margin-bottom:20px}
+  .chip-label{font-size:13px;font-weight:600;color:var(--text-muted);margin-bottom:10px}
+  .chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+  .chip{
+    background:#f0edf8;border:2px solid transparent;
+    padding:10px 18px;border-radius:14px;cursor:pointer;font-weight:600;font-size:15px;
+    color:var(--text);transition:all .15s;font-family:inherit;
+  }
+  .chip:hover{background:#e6e0f4}
+  .chip.active{background:var(--text);color:#fff;border-color:var(--text)}
+  .form-input{
+    width:100%;padding:14px 16px;border:2px solid #ece8f5;border-radius:14px;
+    font-size:15px;font-family:inherit;margin-bottom:12px;outline:none;
+    transition:border-color .15s;
+  }
+  .form-input:focus{border-color:var(--accent-3)}
+  .form-btn{width:100%}
+  .consent{font-size:11px;color:var(--text-muted);margin-top:12px;line-height:1.5}
+  .consent a{color:var(--accent-3);text-decoration:underline}
+
+  /* ACHIEVEMENT BAR */
+  .achievement-bar{
+    background:var(--accent);color:var(--text);
+    padding:24px 0;font-weight:800;font-size:clamp(18px,2.2vw,28px);
+    text-align:center;letter-spacing:-.015em;
+    transform:rotate(-1deg);margin:-30px 0;position:relative;z-index:5;
+  }
+  .achievement-bar span{background:var(--text);color:var(--accent);padding:2px 12px;border-radius:8px;display:inline-block}
+
+  /* SECTIONS BASE */
+  section{padding:100px 0;position:relative}
+  .section-eyebrow{
+    color:var(--accent);font-size:14px;font-weight:700;letter-spacing:.08em;
+    text-transform:uppercase;margin-bottom:16px;
+  }
+  h2{
+    font-size:clamp(32px,4vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.025em;
+    margin-bottom:24px;max-width:900px;
+  }
+  h2 .hl{background:var(--accent);color:var(--text);padding:0 8px;border-radius:8px;display:inline-block}
+  .section-sub{font-size:18px;color:var(--text-on-dark-muted);max-width:680px;margin-bottom:48px;line-height:1.5}
+
+  /* STATS */
+  .stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+  .stat-card{
+    background:var(--card-dark);border:1px solid var(--card-border);
+    border-radius:var(--radius);padding:36px 32px;
+  }
+  .stat-num{
+    font-size:64px;font-weight:900;letter-spacing:-.03em;line-height:1;
+    color:var(--accent);margin-bottom:12px;
+  }
+  .stat-label{font-size:16px;color:var(--text-on-dark-muted);line-height:1.4}
+
+  /* PAIN POINTS */
+  .pain-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  .pain-card{
+    background:var(--card-dark);border:1px solid var(--card-border);
+    border-radius:var(--radius);padding:32px;display:flex;gap:20px;align-items:flex-start;
+    transition:transform .2s,border-color .2s;
+  }
+  .pain-card:hover{transform:translateY(-2px);border-color:var(--accent)}
+  .pain-icon{
+    width:56px;height:56px;border-radius:16px;background:rgba(216,255,58,.12);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:28px;
+  }
+  .pain-text h4{font-size:20px;font-weight:800;margin-bottom:8px;letter-spacing:-.01em}
+  .pain-text p{color:var(--text-on-dark-muted);font-size:15px;line-height:1.5}
+
+  /* OFFER (light section) */
+  .light-section{background:var(--bg-light);color:var(--text)}
+  .light-section h2{color:var(--text)}
+  .light-section .section-eyebrow{color:var(--accent-3)}
+  .light-section .section-sub{color:var(--text-muted)}
+  .features-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:48px}
+  .feature-card{
+    background:#fff;border-radius:var(--radius);padding:32px;
+    border:1px solid #ece8f5;
+    transition:transform .2s,box-shadow .2s;position:relative;overflow:hidden;
+  }
+  .feature-card:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(124,92,255,.12)}
+  .feature-card.featured{background:var(--text);color:#fff}
+  .feature-card.featured h4{color:#fff}
+  .feature-card.featured p{color:#b6acd9}
+  .feature-card.featured .feature-num{background:var(--accent);color:var(--text)}
+  .feature-num{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:48px;height:48px;border-radius:14px;
+    background:var(--accent);color:var(--text);
+    font-size:22px;font-weight:900;margin-bottom:16px;
+  }
+  .feature-card h4{font-size:22px;font-weight:800;margin-bottom:12px;letter-spacing:-.015em;line-height:1.2}
+  .feature-card p{color:var(--text-muted);font-size:15px;line-height:1.55;margin-bottom:16px}
+  .feature-meta{
+    display:inline-block;background:#f5f3ff;color:var(--accent-3);
+    padding:6px 12px;border-radius:8px;font-size:13px;font-weight:600;
+  }
+  .feature-card.featured .feature-meta{background:rgba(216,255,58,.15);color:var(--accent)}
+
+  /* HOW IT WORKS */
+  .how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+  .how-step{
+    background:var(--card-dark);border:1px solid var(--card-border);
+    border-radius:var(--radius);padding:36px;
+  }
+  .step-num{
+    width:56px;height:56px;border-radius:50%;background:var(--accent);color:var(--text);
+    display:flex;align-items:center;justify-content:center;font-weight:900;font-size:22px;
+    margin-bottom:20px;
+  }
+  .how-step h4{font-size:22px;font-weight:800;margin-bottom:10px;letter-spacing:-.015em}
+  .how-step p{color:var(--text-on-dark-muted);font-size:15px;line-height:1.55}
+
+  /* COMPARISON TABLE */
+  .compare-wrap{margin-top:48px;background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:0 8px 32px rgba(124,92,255,.08)}
+  table.compare{width:100%;border-collapse:collapse;font-size:15px;color:var(--text)}
+  table.compare th{
+    background:var(--text);color:#fff;text-align:left;padding:20px 24px;
+    font-weight:700;font-size:14px;
+  }
+  table.compare th.col-us{background:var(--accent);color:var(--text)}
+  table.compare td{padding:18px 24px;border-top:1px solid #ece8f5;vertical-align:top}
+  table.compare td.cell-us{background:#fefae0;font-weight:600}
+  table.compare tr:hover td:not(.cell-us){background:#faf8ff}
+  .check{color:#2dba6a;font-weight:700}
+  .cross{color:#cf3030;font-weight:700}
+  table.compare .row-highlight td{background:#1f1147;color:#fff;font-weight:800;font-size:17px}
+  table.compare .row-highlight td.cell-us{background:var(--accent);color:var(--text)}
+
+  /* GUARANTEE */
+  .guarantee{
+    background:linear-gradient(135deg,var(--accent) 0%,var(--accent-dark) 100%);
+    color:var(--text);padding:60px;border-radius:var(--radius);
+    display:grid;grid-template-columns:1fr 1.2fr;gap:48px;align-items:center;
+    margin-top:48px;position:relative;overflow:hidden;
+  }
+  .guarantee::before{
+    content:"";position:absolute;top:-50%;right:-20%;width:600px;height:600px;
+    background:radial-gradient(circle,rgba(255,255,255,.3) 0%,transparent 70%);
+    pointer-events:none;
+  }
+  .guarantee-num{font-size:120px;font-weight:900;line-height:1;letter-spacing:-.04em;position:relative;z-index:2}
+  .guarantee-num small{font-size:36px;font-weight:700;display:block;letter-spacing:0;line-height:1.1}
+  .guarantee h3{font-size:36px;font-weight:900;letter-spacing:-.02em;margin-bottom:16px;position:relative;z-index:2}
+  .guarantee p{font-size:17px;line-height:1.55;color:rgba(14,10,31,.8);position:relative;z-index:2}
+
+  /* PRICING */
+  .price-card{
+    background:linear-gradient(180deg,var(--card-dark) 0%,var(--bg-2) 100%);
+    border:1px solid var(--card-border);border-radius:var(--radius);
+    padding:48px;margin-top:48px;position:relative;overflow:hidden;
+    display:grid;grid-template-columns:1fr 1fr;gap:48px;
+  }
+  .price-card::before{
+    content:"Премиум 100";position:absolute;top:24px;right:32px;
+    background:var(--accent);color:var(--text);padding:6px 14px;border-radius:8px;
+    font-weight:800;font-size:13px;letter-spacing:.02em;
+  }
+  .price-main h3{font-size:32px;font-weight:900;letter-spacing:-.02em;margin-bottom:8px}
+  .price-main p{color:var(--text-on-dark-muted);margin-bottom:32px;font-size:16px}
+  .price-amount{font-size:64px;font-weight:900;line-height:1;letter-spacing:-.03em;color:var(--accent)}
+  .price-amount small{font-size:18px;font-weight:600;color:var(--text-on-dark-muted);display:inline}
+  .price-month{font-size:14px;color:var(--text-on-dark-muted);margin-top:8px;margin-bottom:24px}
+  .price-perks{list-style:none;padding:0;margin:0 0 32px}
+  .price-perks li{
+    padding:10px 0;display:flex;align-items:flex-start;gap:10px;color:var(--text-on-dark-muted);
+    font-size:15px;line-height:1.4;border-bottom:1px solid rgba(255,255,255,.06);
+  }
+  .price-perks li:last-child{border-bottom:none}
+  .price-perks li::before{content:"✓";color:var(--accent);font-weight:900;flex-shrink:0;font-size:18px;line-height:1.2}
+
+  /* FAQ */
+  .faq{max-width:840px;margin:48px auto 0}
+  .faq-item{
+    background:var(--card-dark);border:1px solid var(--card-border);
+    border-radius:var(--radius-sm);margin-bottom:12px;overflow:hidden;
+  }
+  .faq-q{
+    width:100%;background:transparent;border:none;color:#fff;text-align:left;
+    padding:24px 28px;font-family:inherit;font-size:17px;font-weight:700;
+    cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;
+  }
+  .faq-q::after{
+    content:"+";font-size:24px;color:var(--accent);font-weight:300;
+    transition:transform .25s;flex-shrink:0;
+  }
+  .faq-item.open .faq-q::after{transform:rotate(45deg)}
+  .faq-a{
+    padding:0 28px;max-height:0;overflow:hidden;transition:max-height .3s,padding .3s;
+    color:var(--text-on-dark-muted);font-size:15px;line-height:1.55;
+  }
+  .faq-item.open .faq-a{padding:0 28px 24px;max-height:300px}
+
+  /* FINAL CTA */
+  .final-cta{
+    background:linear-gradient(135deg,var(--text) 0%,var(--bg-2) 100%);
+    color:#fff;border-radius:var(--radius);padding:60px;margin-top:0;
+    display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center;
+    position:relative;overflow:hidden;
+  }
+  .final-cta::before{
+    content:"";position:absolute;top:-30%;right:-10%;width:500px;height:500px;
+    background:radial-gradient(circle,rgba(216,255,58,.2) 0%,transparent 70%);
+  }
+  .final-cta h3{font-size:40px;font-weight:900;letter-spacing:-.025em;line-height:1.1;margin-bottom:20px;position:relative;z-index:2}
+  .final-cta .bullets{list-style:none;padding:0;position:relative;z-index:2}
+  .final-cta .bullets li{padding:8px 0;font-size:16px;color:var(--text-on-dark-muted);display:flex;gap:12px;align-items:center}
+  .final-cta .bullets li::before{content:"→";color:var(--accent);font-weight:900;font-size:20px}
+
+  /* FOOTER */
+  footer{padding:48px 0 32px;border-top:1px solid rgba(255,255,255,.06);margin-top:80px}
+  .footer-grid{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+  .footer-meta{color:var(--text-on-dark-muted);font-size:13px;line-height:1.6}
+
+  /* RESPONSIVE */
+  @media (max-width:920px){
+    .hero{padding:40px 0 60px}
+    .hero-grid{grid-template-columns:1fr;gap:40px}
+    .stats-grid,.pain-grid,.features-grid,.how-grid{grid-template-columns:1fr}
+    .guarantee,.price-card,.final-cta{grid-template-columns:1fr;padding:36px}
+    .guarantee-num{font-size:80px}
+    section{padding:60px 0}
+    .nav-menu,.phone{display:none}
+    h2{font-size:32px}
+    .price-card::before{position:static;display:inline-block;margin-bottom:16px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <nav class="nav">
+      <div class="logo">Премиум&nbsp;<span>100</span></div>
+      <div class="nav-toggle">
+        <button class="active">Ученикам</button>
+        <button>Родителям</button>
+      </div>
+      <div class="nav-menu">
+        <a href="#offer">Состав</a>
+        <a href="#vs">vs репетитор</a>
+        <a href="#price">Цена</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="nav-right">
+        <span class="phone">+7 (495) 104-96-46</span>
+        <a href="#form" class="btn btn-primary">Подобрать тариф</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow">Премиум 100 · набор открыт</span>
+        <h1 class="hero-title">
+          Команда из <span class="hl">3 экспертов</span><br>
+          работает только с&nbsp;тобой —<br>каждую неделю
+        </h1>
+        <p class="hero-sub">
+          Личный наставник, психолог и&nbsp;карьерный консультант плюс эксперты-предметники по&nbsp;ЕГЭ.
+          От&nbsp;5&nbsp;часов индивидуальных созвонов в&nbsp;месяц, чат с&nbsp;наставником, личный план до&nbsp;100 баллов.
+          Альтернатива репетитору, только с&nbsp;экосистемой и&nbsp;в&nbsp;3-4&nbsp;раза дешевле.
+        </p>
+        <div class="hero-badges">
+          <div class="badge">
+            <div class="badge-num">≥ 5 ч</div>
+            <div class="badge-txt">1-на-1 в&nbsp;месяц<br>с&nbsp;командой</div>
+          </div>
+          <div class="badge">
+            <div class="badge-num">3</div>
+            <div class="badge-txt">эксперта закреплены<br>лично за&nbsp;тобой</div>
+          </div>
+          <div class="badge">
+            <div class="badge-num">≤ 60 мин</div>
+            <div class="badge-txt">ответ наставника<br>в&nbsp;чате днём</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-form" id="form">
+        <h3>Подберём тариф под твою цель</h3>
+        <p>Бесплатная консультация — 30 минут разбора с куратором</p>
+        <input type="text" class="form-input" placeholder="Имя ученика">
+        <input type="tel" class="form-input" placeholder="Телефон родителя">
+        <button class="btn btn-primary btn-lg form-btn" onclick="alert('Заявка отправлена! Перезвоним в течение 15 минут.')">Записаться на консультацию</button>
+        <p class="consent">Нажимая кнопку, ты соглашаешься с&nbsp;<a href="#">политикой обработки данных</a> и&nbsp;<a href="#">офертой</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENT BAR -->
+<div class="achievement-bar">
+  Отстал от&nbsp;плана? У&nbsp;нас есть <span>экстренный спасательный план</span>
+</div>
+
+<!-- WHY -->
+<section>
+  <div class="container">
+    <div class="section-eyebrow">Почему мы</div>
+    <h2>Что ты <span class="hl">получаешь</span> в&nbsp;Премиум 100</h2>
+    <p class="section-sub">
+      Не очередной онлайн-курс с&nbsp;куратором в&nbsp;чате. Персональная команда —
+      как у&nbsp;топовых репетиторов, только с&nbsp;системой и&nbsp;платформой за&nbsp;спиной.
+    </p>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-num">4×</div>
+        <div class="stat-label">еженедельных созвонов 1-на-1 с&nbsp;твоим преподавателем — 45&nbsp;минут видео, не&nbsp;переписка в&nbsp;чате.</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">1</div>
+        <div class="stat-label">преподаватель ведёт тебя весь год. Не&nbsp;«куратор сегодня, репетитор завтра» — один человек знает твою историю.</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">24 ч</div>
+        <div class="stat-label">проверка письменной части — эксперт записывает видеоразбор твоих ошибок и&nbsp;отдаёт за&nbsp;сутки.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN POINTS -->
+<section>
+  <div class="container">
+    <div class="section-eyebrow">Это про тебя?</div>
+    <h2>Тогда залетай в&nbsp;<span class="hl">Премиум 100</span></h2>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="pain-icon">🎯</div>
+        <div class="pain-text">
+          <h4>Цель — 80+ баллов и&nbsp;топ-вуз</h4>
+          <p>База у тебя есть, но «надо рывок». Без личного эксперта по предмету не вытянешь — а репетитор в Москве стоит 80&nbsp;000 ₽ в месяц.</p>
+        </div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">💸</div>
+        <div class="pain-text">
+          <h4>Бюджет — не миллион</h4>
+          <p>За репетитора по&nbsp;двум предметам в&nbsp;год отдашь 500–1 000&nbsp;тыс.&nbsp;₽. У&nbsp;нас — 18&nbsp;тысяч в&nbsp;месяц (162&nbsp;000&nbsp;₽ за 9 месяцев) и&nbsp;в&nbsp;комплекте психолог, карьерный консультант, спасательный план.</p>
+        </div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">😵‍💫</div>
+        <div class="pain-text">
+          <h4>Сам не сядешь — нужна структура</h4>
+          <p>«Купил курс — не зашёл — забил». У&nbsp;нас личный куратор напоминает о&nbsp;каждом пропущенном задании. Без тебя задача не&nbsp;закроется.</p>
+        </div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">🎓</div>
+        <div class="pain-text">
+          <h4>Не знаешь, куда поступать</h4>
+          <p>ДВИ, олимпиады, баллы, конкурсные списки, 1-я и 2-я волна — голова кругом. Ментор поступления разложит стратегию под твои баллы.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S INSIDE -->
+<section class="light-section" id="offer">
+  <div class="container">
+    <div class="section-eyebrow">Что входит</div>
+    <h2>Состав тарифа — <span class="hl">7 блоков</span> заботы о&nbsp;тебе</h2>
+    <p class="section-sub">
+      Главное — это много живого общения 1-на-1 и закрытие всех точек подготовки:
+      от теории до апелляции и поступления.
+    </p>
+    <div class="features-grid">
+
+      <div class="feature-card featured">
+        <div class="feature-num">1</div>
+        <h4>Личный преподаватель</h4>
+        <p>Один человек ведёт тебя весь год — наставник и&nbsp;эксперт-предметник в&nbsp;одном лице. Знает твои слабые места, корректирует план под результат. Еженедельный созвон 45&nbsp;минут. Видеоразбор каждой 2-й части за&nbsp;24&nbsp;часа.</p>
+        <span class="feature-meta">еженедельный созвон + личный план до&nbsp;100 баллов</span>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-num">2</div>
+        <h4>Чат с&nbsp;преподавателем</h4>
+        <p>Личный мессенджер с&nbsp;твоим преподавателем в&nbsp;Telegram. Ответ до&nbsp;60&nbsp;минут в&nbsp;рабочее время (10–22 мск). Безлимит вопросов по&nbsp;учёбе. Если пропал — звонит лично тебе и&nbsp;родителю.</p>
+        <span class="feature-meta">ежедневно, без&nbsp;лимита</span>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-num">3</div>
+        <h4>Психолог — 2 раза в&nbsp;месяц</h4>
+        <p>Личные сессии 50&nbsp;минут с&nbsp;экзаменационным психологом. Работа со&nbsp;страхом «провалить», прокрастинацией, выгоранием. Плюс emergency-сессия в&nbsp;течение 24&nbsp;часов при панике.</p>
+        <span class="feature-meta">18 сессий за&nbsp;курс</span>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-num">4</div>
+        <h4>Карьерный консультант</h4>
+        <p>Стратегические созвоны раз в&nbsp;2&nbsp;месяца: куда подавать, какие баллы нужны, ДВИ, олимпиады. Сопровождение в&nbsp;июне–июле — подача документов, мониторинг конкурсных списков.</p>
+        <span class="feature-meta">стратегия + подача + ДВИ</span>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-num">5</div>
+        <h4>Курс по&nbsp;софт-скиллам</h4>
+        <p>4 модуля, которые научат не&nbsp;только сдавать, но&nbsp;и&nbsp;работать с&nbsp;собой: управление временем, энергией, фокусом и&nbsp;вниманием, ментальная регуляция. Видеоуроки + практические задания + групповые разборы.</p>
+        <span class="feature-meta">время · энергия · фокус · регуляция</span>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-num">6</div>
+        <h4>Q&amp;A-созвон с&nbsp;преподавателем</h4>
+        <p>Раз в&nbsp;месяц — закрытый созвон с&nbsp;преподавателем по&nbsp;твоему предмету. Ограниченное число учеников, можно включить микрофон и&nbsp;задать любой вопрос голосом. Не&nbsp;вебинар на&nbsp;1000 человек — камерный формат, где тебя слышат.</p>
+        <span class="feature-meta">1 раз в&nbsp;месяц, малая группа</span>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-num">7</div>
+        <h4>День ЕГЭ и&nbsp;апелляция</h4>
+        <p>В&nbsp;день экзамена преподаватель на&nbsp;связи с&nbsp;7&nbsp;утра. После — разбор «как прошло» и&nbsp;настройка перед следующим. Если балл занизили — готовим к&nbsp;апелляции 1-на-1, разбираем бланк, репетируем защиту.</p>
+        <span class="feature-meta">личное сопровождение, не&nbsp;«очередь»</span>
+      </div>
+
+    </div>
+    <p style="text-align:center;margin-top:32px;color:var(--text-muted);font-size:15px;">
+      Опционально: ежемесячный отчёт-созвон родителю по&nbsp;запросу (30&nbsp;минут — прогресс, риски, рекомендации).
+    </p>
+  </div>
+</section>
+
+<!-- HOW -->
+<section>
+  <div class="container">
+    <div class="section-eyebrow">Как проходит подготовка</div>
+    <h2>Всего <span class="hl">три шага</span></h2>
+    <div class="how-grid">
+      <div class="how-step">
+        <div class="step-num">1</div>
+        <h4>Знакомство и план</h4>
+        <p>Бесплатный созвон с куратором. Выясняем цель в баллах, текущий уровень, слабые темы. Подписываем «контракт на 75+».</p>
+      </div>
+      <div class="how-step">
+        <div class="step-num">2</div>
+        <h4>Подготовка под контролем</h4>
+        <p>Каждую неделю — личный созвон с преподавателем + платформа + психолог + чат с куратором. Раз в месяц — Q&amp;A-вебинар и&nbsp;пробник.</p>
+      </div>
+      <div class="how-step">
+        <div class="step-num">3</div>
+        <h4>ЕГЭ и&nbsp;поступление</h4>
+        <p>Помогаем сдать, при необходимости — апелляция. Дальше ментор поступления ведёт по вузам, ДВИ и&nbsp;подаче документов до&nbsp;зачисления.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VS REPETITOR -->
+<section class="light-section" id="vs">
+  <div class="container">
+    <div class="section-eyebrow">Честное сравнение</div>
+    <h2>Премиум 100 vs частный <span class="hl">репетитор</span></h2>
+    <p class="section-sub">
+      Цифры по рынку Москвы 2026. Сценарий: ЕГЭ по 2 предметам, 9 месяцев подготовки.
+      Никакого маркетинга — голая арифметика.
+    </p>
+    <div class="compare-wrap">
+      <table class="compare">
+        <thead>
+          <tr>
+            <th style="width:34%">Параметр</th>
+            <th>Репетитор средний<br><small style="font-weight:400;color:#b6acd9">2 000 ₽/час</small></th>
+            <th>Репетитор сильный<br><small style="font-weight:400;color:#b6acd9">4 000 ₽/час</small></th>
+            <th class="col-us">Премиум 100<br><small style="font-weight:400">наш тариф</small></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Часов 1-на-1 за курс (2 предмета)</td><td>≈ 144 ч</td><td>≈ 144 ч</td><td class="cell-us">≈ 45 ч</td></tr>
+          <tr><td>Личный наставник еженедельно</td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td class="cell-us"><span class="check">✓</span></td></tr>
+          <tr><td>Адаптивная платформа с тренажёрами</td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td class="cell-us"><span class="check">✓</span></td></tr>
+          <tr><td>Психолог (2 личные сессии/мес)</td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td class="cell-us"><span class="check">✓</span></td></tr>
+          <tr><td>Карьерный консультант + подача документов</td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td class="cell-us"><span class="check">✓</span></td></tr>
+          <tr><td>Курс по&nbsp;софт-скиллам (время, фокус, регуляция)</td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td class="cell-us"><span class="check">✓</span></td></tr>
+          <tr><td>Q&amp;A-созвоны с&nbsp;преподавателем (малая группа)</td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td class="cell-us"><span class="check">✓</span></td></tr>
+          <tr><td>Сопровождение апелляции</td><td><span class="cross">✗</span></td><td>иногда</td><td class="cell-us"><span class="check">✓</span></td></tr>
+          <tr><td>Экстренный спасательный план при&nbsp;отставании</td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td class="cell-us"><span class="check">✓</span></td></tr>
+          <tr class="row-highlight">
+            <td>Цена в&nbsp;месяц</td>
+            <td>≈ 64 000 ₽</td>
+            <td>≈ 128 000 ₽</td>
+            <td class="cell-us">18 000 ₽</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- RESCUE -->
+<section>
+  <div class="container">
+    <div class="section-eyebrow">Если что-то пошло не&nbsp;так</div>
+    <h2>Экстренный <span class="hl">спасательный план</span></h2>
+    <div class="guarantee">
+      <div class="guarantee-num">
+        SOS<small>включается автоматически</small>
+      </div>
+      <div>
+        <h3>Если ты&nbsp;поплыл — мы&nbsp;не&nbsp;бросаем, а&nbsp;вытаскиваем</h3>
+        <p>
+          Если по&nbsp;еженедельному контролю видно, что ученик «поплыл» — провален пробник,
+          темы не&nbsp;идут, мотивация ушла — включаем спасательный режим. Преподаватель пересобирает
+          программу под текущий уровень, добавляем интенсив-сессии, психолог подключается дополнительно.
+          Всё бесплатно. Это&nbsp;не&nbsp;«ваша проблема, что&nbsp;не&nbsp;учитесь» — это&nbsp;«мы&nbsp;довели до&nbsp;точки роста».
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICE -->
+<section id="price">
+  <div class="container">
+    <div class="section-eyebrow">Цена</div>
+    <h2>Один тариф, никаких «опций <span class="hl">за&nbsp;доплату</span>»</h2>
+    <p class="section-sub">
+      Всё, что описано выше, входит в&nbsp;премиум целиком. Не&nbsp;продаём «базу» и&nbsp;«премиум-плюс» —
+      есть одна полная сборка, чтобы ты не выбирал, что важнее.
+    </p>
+    <div class="price-card">
+      <div class="price-main">
+        <h3>Премиум 100</h3>
+        <p>9 месяцев подготовки + личная команда из 3 экспертов</p>
+        <div class="price-amount">18 000 <small>₽ / мес</small></div>
+        <div class="price-month">162 000 ₽ за весь курс · рассрочка 9 месяцев без&nbsp;процентов</div>
+        <a href="#form" class="btn btn-primary btn-lg">Записаться на бесплатную консультацию</a>
+      </div>
+      <ul class="price-perks">
+        <li>Личный преподаватель — еженедельный созвон 1-на-1 (4&nbsp;раза/мес)</li>
+        <li>Персональный план до&nbsp;100 баллов + чат с&nbsp;преподавателем (ответ ≤60 мин)</li>
+        <li>2 личные сессии с&nbsp;психологом в&nbsp;месяц + emergency-доступ за&nbsp;24&nbsp;часа</li>
+        <li>Карьерный консультант: стратегия + ДВИ топ-вузов + подача документов</li>
+        <li>Курс по&nbsp;софт-скиллам: время, энергия, фокус, ментальная регуляция</li>
+        <li>Ежемесячный Q&amp;A-созвон с&nbsp;преподавателем — голосом, не&nbsp;в&nbsp;чате</li>
+        <li>Сопровождение в&nbsp;день ЕГЭ и&nbsp;на&nbsp;апелляции (если потребуется)</li>
+        <li>Экстренный спасательный план, если ты&nbsp;«поплыл»</li>
+        <li>Полный доступ к&nbsp;платформе + пробники с&nbsp;живой проверкой эксперта</li>
+        <li style="color:var(--accent-2)">Опционально: ежемесячный отчёт-созвон родителю</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="light-section" id="faq">
+  <div class="container">
+    <div class="section-eyebrow">Частые вопросы</div>
+    <h2>Что хочется уточнить <span class="hl">сразу</span></h2>
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q">Чем вы лучше частного репетитора?</button>
+        <div class="faq-a">У репетитора больше живых часов, у нас — система: платформа + психолог + ментор поступления + контроль домашек + гарантия. Если бюджет до 200к за курс — мы дадим больше пользы. Если миллион — берите топ-репетитора.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Что такое «экстренный спасательный план»?</button>
+        <div class="faq-a">Каждую неделю проверяем твой прогресс. Если видим, что ты&nbsp;«поплыл» — провален пробник, темы не&nbsp;идут, мотивация ушла — включаем спасательный режим: преподаватель пересобирает программу под текущий уровень, добавляем интенсив-сессии, психолог подключается дополнительно. Всё бесплатно — это&nbsp;уже включено в&nbsp;стоимость тарифа.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Можно ли подключиться в середине года?</button>
+        <div class="faq-a">Да. План пересобирается под количество оставшихся месяцев. Количество индивидуальных созвонов и цена корректируются пропорционально.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">А если я хочу готовиться только по одному предмету?</button>
+        <div class="faq-a">Можно. Тогда остаётся 2 индивидуальных созвона с&nbsp;экспертом по&nbsp;этому предмету в&nbsp;месяц, наставник работает в&nbsp;полном объёме (созвоны, чат, план). Цена снижается. Точные цифры посчитаем на&nbsp;консультации.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Можно ли подключить родителей к&nbsp;отчётам?</button>
+        <div class="faq-a">Да, по&nbsp;запросу. Это опциональный модуль: раз в&nbsp;месяц наставник созванивается с&nbsp;родителем 30&nbsp;минут — прогресс, риски, рекомендации. По&nbsp;опыту, его&nbsp;запрашивают около 40% семей. Подключается по&nbsp;желанию, не&nbsp;по&nbsp;умолчанию.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Как выбирается преподаватель?</button>
+        <div class="faq-a">После входной диагностики куратор подбирает преподавателя под уровень и характер ученика. В первые 2 недели можно поменять, если не сложилось.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Есть рассрочка?</button>
+        <div class="faq-a">Да — 9 месяцев без процентов через банки-партнёры. Платишь как обычную подписку — равными частями каждый месяц.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section>
+  <div class="container">
+    <div class="final-cta">
+      <div>
+        <h3>Сделай первый шаг —<br>это бесплатно</h3>
+        <ul class="bullets">
+          <li>Познакомим со школой и платформой</li>
+          <li>Разберём твой текущий уровень и цель</li>
+          <li>Покажем точный план до 80+ баллов</li>
+          <li>Расскажем, как работает спасательный план</li>
+        </ul>
+      </div>
+      <div class="hero-form" style="background:#fff;color:var(--text)">
+        <h3>Записаться</h3>
+        <p>Перезвоним в течение 15 минут в&nbsp;рабочее время</p>
+        <input type="text" class="form-input" placeholder="Имя">
+        <input type="tel" class="form-input" placeholder="Телефон">
+        <button class="btn btn-primary btn-lg form-btn" onclick="alert('Спасибо! Куратор свяжется в течение 15 минут.')">Получить консультацию</button>
+        <p class="consent">Нажимая, ты соглашаешься с&nbsp;<a href="#">политикой обработки данных</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="logo" style="margin-bottom:8px">100<span>пунктов</span></div>
+        <div class="footer-meta">
+          © 2026 · Премиум 100 · Подготовка к&nbsp;ЕГЭ<br>
+          ИП Иванов И.И. · ОГРН 1234567890123
+        </div>
+      </div>
+      <div class="footer-meta" style="text-align:right">
+        +7 (495) 104-96-46<br>
+        hello@100punktov.ru<br>
+        <a href="#" style="color:var(--accent-3)">Договор-оферта</a> · <a href="#" style="color:var(--accent-3)">Политика конфиденциальности</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Chip groups
+  document.querySelectorAll('.chips').forEach(group=>{
+    group.querySelectorAll('.chip').forEach(chip=>{
+      chip.addEventListener('click',()=>{
+        group.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+        chip.classList.add('active');
+      });
+    });
+  });
+  // Audience toggle
+  document.querySelectorAll('.nav-toggle button').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.nav-toggle button').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(q=>{
+    q.addEventListener('click',()=>{
+      q.parentElement.classList.toggle('open');
+    });
+  });
+</script>
+
+</body>
+</html>
